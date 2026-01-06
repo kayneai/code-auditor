@@ -47,7 +47,7 @@ This is similar to how Claude or GPT-4 use tools to interact with codebases!
 
 ```bash
 # Clone and build
-git clone https://github.com/your-org/code-auditor.git
+git clone https://github.com/aarambh-darshan/code-auditor.git
 cd code-auditor
 cargo build --release
 
