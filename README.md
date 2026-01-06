@@ -160,17 +160,20 @@ code-auditor/
 │   ├── config.rs            # Configuration handling
 │   ├── models.rs            # Data structures
 │   ├── repo/
+│   │   ├── mod.rs           # Module exports
 │   │   └── cloner.rs        # Git repository cloning
 │   ├── agent/
-│   │   ├── tools.rs         # Tool definitions (NEW!)
-│   │   ├── agent_loop.rs    # Agentic loop (NEW!)
-│   │   ├── client.rs        # Ollama API client
-│   │   └── prompts.rs       # LLM prompts
+│   │   ├── mod.rs           # Module exports
+│   │   ├── tools.rs         # Tool definitions
+│   │   └── agent_loop.rs    # Agentic loop
 │   ├── analysis/
-│   │   ├── orchestrator.rs  # Analysis coordination
+│   │   ├── mod.rs           # Module exports
 │   │   └── aggregator.rs    # Issue aggregation
-│   └── report/
-│       └── generator.rs     # Report generation
+│   ├── report/
+│   │   ├── mod.rs           # Module exports
+│   │   └── generator.rs     # Report generation
+│   └── scanner/
+│       └── mod.rs           # File scanning utilities
 ├── Cargo.toml
 └── .code-auditor.toml
 ```
